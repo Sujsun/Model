@@ -59,19 +59,25 @@ function triggerChanges (event, oldObject, newObject) {
 function findChanges (oldObject, newObject) {
   var key,
       oldValue,
-      newValue;
+      newValue,
 
+      change,
       changedAttributes = [];
 
   for(key in newObject) {
     newValue = newObject[key];
     oldValue = oldObject[key];
     if(newValue !== oldValue) {
-      changedAttributes.push({
+      change = {
         attributeName: key,
         oldValue: oldValue,
         newValue: newValue,
-      });
+        action: 'change',
+      };
+      if(oldValue === undefined) {
+        change.action = 'add';
+      }
+      changedAttributes.push(change);
     }
   }
 
@@ -83,6 +89,7 @@ function findChanges (oldObject, newObject) {
         attributeName: key,
         oldValue: oldValue,
         newValue: newValue,
+        action: 'remove',
       });
     }
   }

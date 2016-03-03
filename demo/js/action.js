@@ -14,4 +14,7 @@ model.on('change', function (change) {
 });
 
 model.set('name', 'Surendar');
+
+model.set('height', 5.8);
+
 model.unset('age');
