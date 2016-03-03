@@ -1,6 +1,7 @@
 var object = {
   name: 'Sundarasan',
   age: 24,
+  language: 'Tamil'
 };
 
 var model = new Model(object);
@@ -18,3 +19,7 @@ model.set('name', 'Surendar');
 model.set('height', 5.8);
 
 model.unset('age');
+
+model.unset(['language', 'height']);
+
+console.log(model.toJSON());

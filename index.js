@@ -30,10 +30,23 @@ Model.prototype.get = function (key) {
   return this.attributes[key];
 };
 
-Model.prototype.unset = function (property) {
-  var newObject = clone(this.attributes);
-  delete newObject[property];
+Model.prototype.unset = function (properties) {
+  var index,
+      property,
+      newObject = clone(this.attributes);
+
+  if (typeof(properties) === 'string') {
+    properties = [properties];
+  }
+
+  for(index in properties) {
+    property = properties[index];
+    delete newObject[property];
+  }
+  
   triggerChanges(this.event, this.attributes, newObject);
+
+  this.attributes = newObject;
 };
 
 Model.prototype.on = function () {
