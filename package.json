@@ -1,0 +1,38 @@
+{
+  "name": "model",
+  "version": "0.0.1",
+  "description": "A simple javascript model class with event emitters",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sujsun/Model.git"
+  },
+  "keywords": [
+    "model",
+    "javascript",
+    "getter",
+    "setter",
+    "get",
+    "set",
+    "change",
+    "event",
+    "onchange"
+  ],
+  "author": "Sundarasan Natarajan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sujsun/Model/issues"
+  },
+  "homepage": "https://github.com/Sujsun/Model#readme",
+  "dependencies": {
+    "minivents": "^2.0.1"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-watchify": "^0.1.0"
+  }
+}
