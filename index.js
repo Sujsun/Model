@@ -43,7 +43,7 @@ Model.prototype.unset = function (properties) {
     property = properties[index];
     delete newObject[property];
   }
-  
+
   triggerChanges(this.event, this.attributes, newObject);
 
   this.attributes = newObject;
@@ -51,6 +51,14 @@ Model.prototype.unset = function (properties) {
 
 Model.prototype.on = function () {
   this.event.on.apply(this.event, arguments);
+};
+
+Model.prototype.off = function () {
+  this.event.off.apply(this.event, arguments);
+};
+
+Model.prototype.emit = function () {
+  this.event.emit.apply(this.event, arguments);
 };
 
 Model.prototype.toJSON = function () {
