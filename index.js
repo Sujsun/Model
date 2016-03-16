@@ -49,6 +49,11 @@ Model.prototype.unset = function (properties) {
   this.attributes = newObject;
 };
 
+Model.prototype.clear = function () {
+  this.attributes = {};
+  return this.attributes;
+};
+
 Model.prototype.on = function () {
   this.event.on.apply(this.event, arguments);
 };
