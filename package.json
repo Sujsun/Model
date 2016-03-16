@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "grunt": "^0.4.5",
+    "grunt-contrib-uglify": "^1.0.0",
     "grunt-watchify": "^0.1.0"
   }
 }
