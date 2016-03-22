@@ -131,6 +131,6 @@ function clone (object) {
   }
 };
 
-window.Model = Model;
+window && (window.Model = Model);
 
 module.exports = Model;
