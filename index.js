@@ -21,7 +21,7 @@ Model.prototype.set = function (property, value) {
     newObject[key] = object[key];
   }
 
-  triggerChanges(this.event, this.attributes, newObject);
+  this._triggerChanges(this.attributes, newObject);
 
   this.attributes = newObject;
 };
@@ -44,7 +44,7 @@ Model.prototype.unset = function (properties) {
     delete newObject[property];
   }
 
-  triggerChanges(this.event, this.attributes, newObject);
+  this._triggerChanges(this.attributes, newObject);
 
   this.attributes = newObject;
 };
@@ -70,19 +70,19 @@ Model.prototype.toJSON = function () {
   return clone(this.attributes);
 };
 
-function triggerChanges (event, oldObject, newObject) {
-  var changes = findChanges(oldObject, newObject),
+Model.prototype._triggerChanges = function (oldObject, newObject) {
+  var changes = this._findChanges(oldObject, newObject),
       index, change;
   for(index in changes) {
     change = changes[index];
-    event.emit('change:' + change.attributeName, change);
+    this.event.emit('change:' + change.attributeName, change);
   }
   if (changes.length > 0) {
-    event.emit('change', changes);
+    this.event.emit('change', changes);
   }
-}
+};
 
-function findChanges (oldObject, newObject) {
+Model.prototype._findChanges = function (oldObject, newObject) {
   var key,
       oldValue,
       newValue,
@@ -121,7 +121,7 @@ function findChanges (oldObject, newObject) {
   }
 
   return changedAttributes;
-}
+};
 
 function clone (object) {
   if(typeof(object) === 'object') {
