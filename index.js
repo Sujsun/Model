@@ -8,6 +8,7 @@ function Model (attributes) {
 Model.prototype.set = function (property, value) {
   var object,
       key,
+      oldObject = clone(this.attributes),
       newObject = clone(this.attributes);
 
   if (typeof(property) === 'string') {
@@ -21,9 +22,9 @@ Model.prototype.set = function (property, value) {
     newObject[key] = object[key];
   }
 
-  this._triggerChanges(this.attributes, newObject);
-
   this.attributes = newObject;
+
+  this._triggerChanges(oldObject, newObject);
 };
 
 Model.prototype.get = function (key) {
@@ -33,6 +34,7 @@ Model.prototype.get = function (key) {
 Model.prototype.unset = function (properties) {
   var index,
       property,
+      oldObject = clone(this.attributes),
       newObject = clone(this.attributes);
 
   if (typeof(properties) === 'string') {
@@ -44,9 +46,9 @@ Model.prototype.unset = function (properties) {
     delete newObject[property];
   }
 
-  this._triggerChanges(this.attributes, newObject);
-
   this.attributes = newObject;
+
+  this._triggerChanges(oldObject, newObject);
 };
 
 Model.prototype.clear = function () {
